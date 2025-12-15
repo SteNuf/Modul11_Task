@@ -1,9 +1,9 @@
-import "./App.css";
+import "./app.scss";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./routes/Root";
 import CreateView from "./routes/create/CreateView";
 import EditView from "./routes/edit/EditView";
-import OverView from "./routes/overview/Overview";
+import OverView from "./routes/overview/OverView";
 
 const router = createBrowserRouter([
   {

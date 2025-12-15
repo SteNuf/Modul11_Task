@@ -1,0 +1,31 @@
+#root {
+  width: 100%;
+  display: flex;
+}
+#root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  background-color: rgba(105, 89, 89, 0.87);
+  color: rgb(245, 236, 236);
+}
+
+body {
+  margin: 0;
+  display: flex;
+  min-height: 100vh;
+}
+
+.app {
+  display: flex;
+  width: 100%;
+}
+
+.app-sidebar {
+  width: 350px;
+}
+
+.app-content {
+  flex-grow: 1;
+}

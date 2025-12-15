@@ -1,0 +1,38 @@
+@use "../../variables" as *;
+
+.sidebar-container {
+  //background-color: rgb(75, 71, 71);
+  background-color: $gray-90;
+  border-right: 1px solid $gray-30;
+  height: 100%;
+}
+.sidebar-header {
+  height: 4rem;
+  border-bottom: solid $gray-30 1px;
+  display: flex;
+  padding: 1rem;
+  justify-content: center;
+}
+
+.sidebar-body {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sidebar-item {
+  padding: 1rem !important;
+  background-color: $gray-80 !important;
+  border: none !important;
+  border-radius: 10px !important;
+  width: 100% !important;
+  text-align: left !important;
+  font-size: 1rem !important;
+  color: rgb(245, 244, 244) !important;
+}
+
+.sidebar-item:hover {
+  background-color: $gray-75 !important;
+  cursor: pointer;
+}
