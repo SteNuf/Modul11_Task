@@ -1,4 +1,4 @@
-function edit() {
+function Edit() {
   return <div>Edit Page</div>;
 }
-export default edit;
+export default Edit;
