@@ -1,26 +1,24 @@
 import "./App.css";
-import { createBrowserRouter } from "react-router-dom";
-import Overview from "./routes/overview/Overview";
-import Create from "./routes/create/create";
-import Edit from "./routes/edit/Edit";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Root from "./routes/Root";
+import CreateView from "./routes/create/CreateView";
+import EditView from "./routes/edit/EditView";
+import OverView from "./routes/overview/Overview";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+    children: [
+      { path: "overview", element: <OverView /> },
+      { path: "create", element: <CreateView /> },
+      { path: "edit/:id", element: <EditView /> },
+    ],
+  },
+]);
 
 function App() {
-  const router = createBrowserRouter([
-    {
-      path: "overview",
-      element: <Overview />,
-      children: [
-        { path: "create", element: <Create /> },
-        { path: "edit", element: <Edit /> },
-      ],
-    },
-  ]);
-
-  return (
-    <>
-      <div></div>
-    </>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

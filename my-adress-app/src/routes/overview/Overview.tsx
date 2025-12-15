@@ -1,4 +1,4 @@
-function Overview() {
+function OverView() {
   return <div>Overview Page</div>;
 }
-export default Overview;
+export default OverView;
