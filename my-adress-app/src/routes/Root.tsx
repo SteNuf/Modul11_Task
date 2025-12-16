@@ -23,7 +23,7 @@ function Root() {
 
           <div className="app-input-birthdate">
             <label>Geburtsdatum:</label>
-            <BirthInput />
+            <BirthInput className="app-input-birth-textfield" />
           </div>
 
           <div className="app-input-gender">
@@ -51,8 +51,8 @@ function Root() {
             <TextInput className="app-input-textfield" />
           </div>
 
-          <div className="app-submit-button">
-            <Button />
+          <div className="app-button">
+            <Button className="app-submit_button" />
           </div>
         </div>
       </main>

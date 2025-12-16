@@ -33,7 +33,7 @@ function GenderInput() {
           <MenuItem value="nicht-angeben">Möchte ich nicht angeben</MenuItem>
         </Select>
       </FormControl>
-      {geschlecht && <p>Ausgewählt: {geschlecht}</p>}
+      {/* {geschlecht && <p>Ausgewählt:  {geschlecht}</p>} */}
     </Box>
   );
 }
