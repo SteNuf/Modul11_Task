@@ -1,4 +1,4 @@
 function CreateView() {
-  return <div>Create Page</div>;
+  return <></>;
 }
 export default CreateView;
