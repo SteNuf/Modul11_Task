@@ -1,0 +1,92 @@
+@use "../../variables" as *;
+
+.overview-container {
+  width: 100%;
+  display: flex;
+  background-color: rgba(219, 215, 215, 0.87);
+  height: 20rem;
+  font-size: 1rem;
+}
+
+.overview-foto {
+  display: flex;
+  margin-top: 3rem;
+  margin-left: 1rem;
+  padding: 1rem;
+  width: 10%;
+  height: 12rem;
+  background-color: $gray-90;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px 0px 0px 20px;
+  border: none;
+  border-right: 1px solid black;
+}
+
+.overview-person {
+  display: flex;
+  margin-top: 3rem;
+  padding: 1rem;
+  width: 40%;
+  height: 12rem;
+  background-color: $gray-90;
+  border-radius: 0 20px 20px 0;
+  border: none;
+  text-align: left;
+}
+
+.overview-username {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  width: 0;
+  margin-left: 2rem;
+}
+
+.overview-details {
+  display: flex;
+  flex-direction: row;
+  width: 20%;
+  margin-top: 0.5rem;
+  text-align: right;
+}
+
+.overview-leftside {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-start;
+  margin-top: 2.5rem;
+  margin-right: 8rem;
+}
+
+.overview-birth,
+.overview-email {
+  display: flex;
+}
+
+.overview-birth-icon,
+.overview-email-icon,
+.overview-adress-icon,
+.overview-phone-icon,
+.overview-gender-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+.overview-rightside {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2.5rem;
+  text-align: left;
+  gap: 0.5rem;
+}
+
+.overview-website {
+  display: flex;
+}
+
+.overview-website-icon {
+  width: 25px;
+  height: 25px;
+}
