@@ -1,14 +1,15 @@
 @use "../../variables" as *;
 
-.overview-container {
+.usercard-container {
   width: 100%;
   display: flex;
   background-color: rgba(219, 215, 215, 0.87);
   height: 20rem;
   font-size: 1rem;
+  position: relative;
 }
 
-.overview-foto {
+.usercard-foto {
   display: flex;
   margin-top: 3rem;
   margin-left: 1rem;
@@ -23,7 +24,7 @@
   border-right: 1px solid black;
 }
 
-.overview-person {
+.usercard-person {
   display: flex;
   margin-top: 3rem;
   padding: 1rem;
@@ -35,14 +36,14 @@
   text-align: left;
 }
 
-.overview-username {
+.usercard-username {
   font-weight: bold;
   margin-bottom: 0.5rem;
   width: 0;
   margin-left: 2rem;
 }
 
-.overview-details {
+.usercard-details {
   display: flex;
   flex-direction: row;
   width: 20%;
@@ -50,7 +51,7 @@
   text-align: right;
 }
 
-.overview-leftside {
+.usercard-leftside {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -59,22 +60,22 @@
   margin-right: 8rem;
 }
 
-.overview-birth,
-.overview-email {
+.usercard-birth,
+.usercard-email {
   display: flex;
 }
 
-.overview-birth-icon,
-.overview-email-icon,
-.overview-adress-icon,
-.overview-phone-icon,
-.overview-gender-icon {
+.usercard-birth-icon,
+.usercard-email-icon,
+.usercard-adress-icon,
+.usercard-phone-icon,
+.usercard-gender-icon {
   width: 20px;
   height: 20px;
   margin-right: 5px;
 }
 
-.overview-rightside {
+.usercard-rightside {
   display: flex;
   flex-direction: column;
   margin-top: 2.5rem;
@@ -82,11 +83,11 @@
   gap: 0.5rem;
 }
 
-.overview-website {
+.usercard-website {
   display: flex;
 }
 
-.overview-website-icon {
+.usercard-website-icon {
   width: 25px;
   height: 25px;
 }
