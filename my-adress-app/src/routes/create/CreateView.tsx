@@ -16,6 +16,10 @@ function CreateView() {
       birthdate ? birthdate.format("DD.MM.YYYY") : ""
     );
     console.log("Username gespeichert:", username);
+    console.log(
+      "Geburtstag gespeichert:",
+      birthdate?.format("DD.MM.YYYY") ?? ""
+    );
   };
 
   return (
