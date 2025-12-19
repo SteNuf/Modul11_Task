@@ -9,12 +9,12 @@ function Usercard() {
       <div className="usercard-container">
         <div className="usercard-foto">
           <img
-            src="https://randomuser.me/api/portaits/men/75.jpg"
+            // src="https://randomuser.me/api/portaits/men/75.jpg"
             alt="Potraitbild"
           ></img>
         </div>
         <div className="usercard-person">
-          <div className="usercard-username">Username</div>
+          <div className="usercard-username"></div>
           <div className="usercard-details">
             <div className="usercard-leftside">
               <div className="usercard-birth">
