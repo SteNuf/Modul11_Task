@@ -8,23 +8,23 @@ import {
   type SelectChangeEvent,
 } from "@mui/material";
 
-function GenderInput() {
-  const [geschlecht, setGeschlecht] = useState("");
+type GenderInputProps = {
+  className?: string;
+  value: string;
+  onChange: (event: SelectChangeEvent<string>) => void;
+};
 
-  const handleChange = (event: SelectChangeEvent<string>) => {
-    setGeschlecht(event.target.value as string);
-  };
-
+function GenderInput({ className, value, onChange }: GenderInputProps) {
   return (
     <Box sx={{ minWidth: 120 }}>
-      <FormControl fullWidth>
+      <FormControl fullWidth className={className}>
         <InputLabel id="geschlecht-label"></InputLabel>
         <Select
           labelId="geschlecht-label"
           id="geschlecht-select"
-          value={geschlecht}
+          value={value}
           label="Geschlecht"
-          onChange={handleChange}
+          onChange={onChange}
         >
           <MenuItem value="">Bitte wählen</MenuItem>
           <MenuItem value="männlich">Männlich</MenuItem>
