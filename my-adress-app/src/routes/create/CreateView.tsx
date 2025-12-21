@@ -2,9 +2,10 @@ import Button from "../../components/button/Button";
 import TextInput from "../../components/input/TextInput";
 import GenderInput from "../../components/input/GenderInput";
 import BirthInput from "../../components/input/BirthInput";
-import { useState } from "react";
-import { Dayjs } from "dayjs";
+import { useEffect, useState } from "react";
+import dayjs, { Dayjs } from "dayjs";
 import type { Person } from "../../types/person";
+import { useSearchParams } from "react-router-dom";
 
 const initialErrors = {
   username: "",
@@ -40,6 +41,8 @@ const loadPersons = (): Person[] => {
 };
 
 function CreateView() {
+  const [searchParams] = useSearchParams();
+  const editingId = searchParams.get("id");
   const [username, setUsername] = useState("");
   const [birthdate, setBirthdate] = useState<Dayjs | null>(null);
   const [gender, setGender] = useState("");
@@ -73,8 +76,9 @@ function CreateView() {
       return;
     }
 
-    const newPerson: Person = {
-      id: generateId(),
+    const persons = loadPersons();
+    const base: Person = {
+      id: editingId ?? generateId(),
       username: username.trim(),
       birthdate: birthdate ? birthdate.format("DD.MM.YYYY") : "",
       gender,
@@ -84,13 +88,32 @@ function CreateView() {
       website: website.trim(),
     };
 
-    const persons = loadPersons();
-    localStorage.setItem(storageKey, JSON.stringify([...persons, newPerson]));
+    const hasMatch = persons.some((p) => p.id === base.id);
+    const nextPersons = hasMatch
+      ? persons.map((p) => (p.id === base.id ? base : p))
+      : [...persons, base];
 
-    console.log("Person gespeichert:", newPerson);
-    console.log("Gespeicherte ID:", newPerson.id);
+    localStorage.setItem(storageKey, JSON.stringify(nextPersons));
+
+    console.log("Person gespeichert:", base);
+    console.log("Gespeicherte ID:", base.id);
     alert("Person wurde gespeichert.");
   };
+
+  useEffect(() => {
+    if (!editingId) return;
+    const persons = loadPersons();
+    const existing = persons.find((p) => p.id === editingId);
+    if (!existing) return;
+
+    setUsername(existing.username);
+    setBirthdate(existing.birthdate ? dayjs(existing.birthdate, "DD.MM.YYYY") : null);
+    setGender(existing.gender);
+    setEmail(existing.email);
+    setPostAdress(existing.postAdress);
+    setPhonenumber(existing.phonenumber);
+    setWebsite(existing.website);
+  }, [editingId]);
 
   return (
     <>

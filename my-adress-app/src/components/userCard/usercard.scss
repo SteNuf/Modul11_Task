@@ -9,6 +9,22 @@
   position: relative;
 }
 
+.usercard-delete {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+}
+
+.usercard-delete-icon {
+  width: 24px;
+  height: 24px;
+  color: #c62828;
+}
+
 .usercard-foto {
   display: flex;
   margin-top: 3rem;
@@ -28,12 +44,13 @@
   display: flex;
   margin-top: 3rem;
   padding: 1rem;
-  width: 50%;
+  width: 60%;
   height: 12rem;
   background-color: $gray-90;
   border-radius: 0 20px 20px 0;
   border: none;
   text-align: left;
+  position: relative;
 }
 
 .usercard-username {

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   Select,
   MenuItem,
@@ -25,15 +24,27 @@ function GenderInput({ className, value, onChange }: GenderInputProps) {
           value={value}
           label="Geschlecht"
           onChange={onChange}
+          sx={{
+            "& .MuiSelect-select": {
+              backgroundColor: "rgb(196, 185, 185)",
+              borderRadius: "10px",
+            },
+          }}
+          MenuProps={{
+            PaperProps: {
+              sx: {
+                backgroundColor: "rgb(196, 185, 185)",
+              },
+            },
+          }}
         >
-          <MenuItem value="">Bitte wählen</MenuItem>
-          <MenuItem value="männlich">Männlich</MenuItem>
+          <MenuItem value="">Bitte waehlen</MenuItem>
+          <MenuItem value="maennlich">Maennlich</MenuItem>
           <MenuItem value="weiblich">Weiblich</MenuItem>
           <MenuItem value="divers">Divers</MenuItem>
-          <MenuItem value="nicht-angeben">Möchte ich nicht angeben</MenuItem>
+          <MenuItem value="nicht-angeben">Moechte ich nicht angeben</MenuItem>
         </Select>
       </FormControl>
-      {/* {geschlecht && <p>Ausgewählt:  {geschlecht}</p>} */}
     </Box>
   );
 }
