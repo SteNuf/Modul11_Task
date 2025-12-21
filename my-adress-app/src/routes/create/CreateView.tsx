@@ -5,6 +5,17 @@ import BirthInput from "../../components/input/BirthInput";
 import { useState } from "react";
 import { Dayjs } from "dayjs";
 
+type Person = {
+  id: string;
+  username: string;
+  birthdate: string;
+  gender: string;
+  email: string;
+  postAdress: string;
+  phonenumber: string;
+  website: string;
+};
+
 const initialErrors = {
   username: "",
   birthdate: "",
@@ -18,6 +29,25 @@ const initialErrors = {
 const emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 const phoneRegex = /^[0-9+()\-\\s]{7,}$/;
 const urlRegex = /^(https?:\/\/)?([\w-]+\.)+[\w-]+(\/[\w.,@?^=%&:/~+#-]*)?$/i;
+const storageKey = "persons";
+
+const generateId = () =>
+  typeof crypto !== "undefined" && "randomUUID" in crypto
+    ? crypto.randomUUID()
+    : `${Date.now()}-${Math.random().toString(16).slice(2, 8)}`;
+
+const loadPersons = (): Person[] => {
+  const raw = localStorage.getItem(storageKey);
+
+  if (!raw) return [];
+
+  try {
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? (parsed as Person[]) : [];
+  } catch {
+    return [];
+  }
+};
 
 function CreateView() {
   const [username, setUsername] = useState("");
@@ -33,14 +63,15 @@ function CreateView() {
     const next = { ...initialErrors };
 
     if (!username.trim()) next.username = "Bitte Username eingeben.";
-    if (!birthdate) next.birthdate = "Bitte Geburtsdatum wählen.";
-    if (!gender) next.gender = "Bitte Geschlecht wählen.";
-    if (!emailRegex.test(email.trim())) next.email = "Ungültige E-Mail.";
+    if (!birthdate) next.birthdate = "Bitte Geburtsdatum waehlen.";
+    if (!gender) next.gender = "Bitte Geschlecht waehlen.";
+    if (!emailRegex.test(email.trim())) next.email = "Ungueltige E-Mail.";
     if (!postAdress.trim()) next.postAdress = "Bitte Adresse eingeben.";
     if (!phoneRegex.test(phonenumber.trim()))
-      next.phonenumber = "Telefonnummer prüfen (mind. 7 Zeichen).";
-    if (website.trim() && !urlRegex.test(website.trim()))
-      next.website = "Ungültige URL (http[s]://...).";
+      next.phonenumber = "Telefonnummer pruefen (mind. 7 Zeichen).";
+    if (!website.trim()) next.website = "Bitte Website eingeben.";
+    else if (!urlRegex.test(website.trim()))
+      next.website = "Ungueltige URL (http[s]://...).";
 
     setErrors(next);
     return Object.values(next).every((msg) => msg === "");
@@ -48,39 +79,30 @@ function CreateView() {
 
   const handleSave = () => {
     if (!validate()) {
-      alert("Bitte fehlende oder fehlerhafte Felder prüfen.");
+      alert("Bitte fehlende oder fehlerhafte Felder pruefen.");
+      return;
     }
 
-    localStorage.setItem("username", username);
-    localStorage.setItem(
-      "birthdate",
-      birthdate ? birthdate.format("DD.MM.YYYY") : ""
-    );
-    localStorage.setItem("gender", gender);
+    const newPerson: Person = {
+      id: generateId(),
+      username: username.trim(),
+      birthdate: birthdate ? birthdate.format("DD.MM.YYYY") : "",
+      gender,
+      email: email.trim(),
+      postAdress: postAdress.trim(),
+      phonenumber: phonenumber.trim(),
+      website: website.trim(),
+    };
 
-    console.log("Username gespeichert:", username);
-    console.log(
-      "Geburtstag gespeichert:",
-      birthdate?.format("DD.MM.YYYY") ?? ""
-    );
-    console.log("gender:", gender);
+    const persons = loadPersons();
+    localStorage.setItem(storageKey, JSON.stringify([...persons, newPerson]));
+
+    console.log("Person gespeichert:", newPerson);
+    console.log("Gespeicherte ID:", newPerson.id);
   };
-
-  localStorage.setItem("email", email);
-  console.log("email:", email);
-
-  localStorage.setItem("postadress", postAdress);
-  console.log("Post Adresse:");
-
-  localStorage.setItem("phonenumber", phonenumber);
-  console.log("Phonenumber:", phonenumber);
-
-  localStorage.setItem("website", website);
-  console.log("Website:", website);
 
   return (
     <>
-      {" "}
       <div className="app-input">
         <div className="app-input-username">
           <label>Username:</label>
@@ -100,7 +122,7 @@ function CreateView() {
             className="app-input-birth-textfield"
             value={birthdate}
             onChange={(newValue) => setBirthdate(newValue)}
-          />{" "}
+          />
           {errors.birthdate && (
             <span className="input-error">{errors.birthdate}</span>
           )}
@@ -112,7 +134,7 @@ function CreateView() {
             className="app-input-gender-options"
             value={gender}
             onChange={(e) => setGender(e.target.value)}
-          />{" "}
+          />
           {errors.gender && (
             <span className="input-error">{errors.gender}</span>
           )}
@@ -124,7 +146,7 @@ function CreateView() {
             className="app-input-textfield"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-          />{" "}
+          />
           {errors.email && <span className="input-error">{errors.email}</span>}
         </div>
 
@@ -146,7 +168,7 @@ function CreateView() {
             className="app-input-textfield"
             value={phonenumber}
             onChange={(e) => setPhonenumber(e.target.value)}
-          />{" "}
+          />
           {errors.phonenumber && (
             <span className="input-error">{errors.phonenumber}</span>
           )}
@@ -158,7 +180,7 @@ function CreateView() {
             className="app-input-textfield"
             value={website}
             onChange={(e) => setWebsite(e.target.value)}
-          />{" "}
+          />
           {errors.website && (
             <span className="input-error">{errors.website}</span>
           )}
