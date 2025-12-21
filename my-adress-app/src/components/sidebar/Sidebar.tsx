@@ -2,7 +2,6 @@ import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import "./sidebar.scss";
 
-Link;
 function Sidebar() {
   return (
     <>
@@ -16,10 +15,10 @@ function Sidebar() {
         </div>
         <div className="sidebar-body">
           <Link to={"overview"}>
-            <Button className="sidebar-item">Übersicht</Button>
+            <Button className="sidebar-item">Uebersicht</Button>
           </Link>
 
-          <Link to={"overview"}>
+          <Link to={"create"}>
             <Button className="sidebar-item">Erstellen</Button>
           </Link>
         </div>

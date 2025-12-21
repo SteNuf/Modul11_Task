@@ -4,17 +4,7 @@ import GenderInput from "../../components/input/GenderInput";
 import BirthInput from "../../components/input/BirthInput";
 import { useState } from "react";
 import { Dayjs } from "dayjs";
-
-type Person = {
-  id: string;
-  username: string;
-  birthdate: string;
-  gender: string;
-  email: string;
-  postAdress: string;
-  phonenumber: string;
-  website: string;
-};
+import type { Person } from "../../types/person";
 
 const initialErrors = {
   username: "",
@@ -99,6 +89,7 @@ function CreateView() {
 
     console.log("Person gespeichert:", newPerson);
     console.log("Gespeicherte ID:", newPerson.id);
+    alert("Person wurde gespeichert.");
   };
 
   return (
