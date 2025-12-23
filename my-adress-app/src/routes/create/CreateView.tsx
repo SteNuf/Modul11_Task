@@ -5,7 +5,7 @@ import BirthInput from "../../components/input/BirthInput";
 import { useEffect, useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import type { Person } from "../../types/person";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const initialErrors = {
   username: "",
@@ -51,6 +51,7 @@ function CreateView() {
   const [phonenumber, setPhonenumber] = useState("");
   const [website, setWebsite] = useState("");
   const [errors, setErrors] = useState(initialErrors);
+  const navigate = useNavigate();
 
   const validate = () => {
     const next = { ...initialErrors };
@@ -72,7 +73,7 @@ function CreateView() {
 
   const handleSave = () => {
     if (!validate()) {
-      alert("Bitte fehlende oder fehlerhafte Felder pruefen.");
+      alert("Bitte fehlende oder fehlerhafte Felder prüfen.");
       return;
     }
 
@@ -98,6 +99,7 @@ function CreateView() {
     console.log("Person gespeichert:", base);
     console.log("Gespeicherte ID:", base.id);
     alert("Person wurde gespeichert.");
+    navigate("/overview");
   };
 
   useEffect(() => {
@@ -107,7 +109,9 @@ function CreateView() {
     if (!existing) return;
 
     setUsername(existing.username);
-    setBirthdate(existing.birthdate ? dayjs(existing.birthdate, "DD.MM.YYYY") : null);
+    setBirthdate(
+      existing.birthdate ? dayjs(existing.birthdate, "DD.MM.YYYY") : null
+    );
     setGender(existing.gender);
     setEmail(existing.email);
     setPostAdress(existing.postAdress);

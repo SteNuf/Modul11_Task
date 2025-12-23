@@ -24,7 +24,7 @@ function OverView() {
   }, []);
 
   const handleDelete = (id: string) => {
-    if (!confirm("Person wirklich loeschen?")) return;
+    if (!confirm("Person wirklich löschen?")) return;
     setPersons((prev) => {
       const next = prev.filter((p) => p.id !== id);
       localStorage.setItem(storageKey, JSON.stringify(next));

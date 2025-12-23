@@ -39,7 +39,7 @@ function GenderInput({ className, value, onChange }: GenderInputProps) {
           }}
         >
           <MenuItem value="">Bitte waehlen</MenuItem>
-          <MenuItem value="maennlich">Maennlich</MenuItem>
+          <MenuItem value="maennlich">Männlich</MenuItem>
           <MenuItem value="weiblich">Weiblich</MenuItem>
           <MenuItem value="divers">Divers</MenuItem>
           <MenuItem value="nicht-angeben">Moechte ich nicht angeben</MenuItem>
