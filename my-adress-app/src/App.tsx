@@ -7,7 +7,7 @@ import OverView from "./routes/overview/OverView";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/Nutzerverwaltung",
     element: <Root />,
     children: [
       { path: "overview", element: <OverView /> },
